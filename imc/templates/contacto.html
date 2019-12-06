@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Ketfood">
+  <meta name="author" content="Abzu & Ferret">
+
+  {% block title %}<title>Ketfood&copy;</title>{% endblock %}
+
+  <!-- Bootstrap CSS -->
+  {% load static %}
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="{% static 'css/ketfood.css' %}" rel="stylesheet"> 
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <!-- LOGO -->
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'css/ketlogo.png' %}"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Barra Nav -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'imc2' %}">IMC</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Información
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="{% url 'faq' %}">Preguntas Frecuentes</a>
+              <a class="dropdown-item" href="{% url 'planes' %}">Planes</a>
+            </div>
+          </li>
+          <div class="v-separator"></div>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn btn-primary text-center" >Cerrar sesión</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary text-center" >Iniciar sesión</a>
+            {% endif %}
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Contacto
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'index' %}">Inicio</a>
+      </li>
+      <li class="breadcrumb-item active">Contacto</li>
+    </ol>
+
+  <!-- Content Row -->
+  <div class="row">
+    <!-- Contact Details Column -->
+    <div class="col-lg-12 mb-4">
+      <h3 class="text-center">Detalles de Contacto</h3>
+      <p class="text-center">
+        Avenida Alcorta #666
+        <br>Santiago, Chile
+        <br>
+      </p>
+      <p class="text-center">
+        Teléfono: (+56 9) 85426678
+      </p>
+      <p class="text-center">
+        Correo:
+        <a href="mailto:contacto@ketfood.com">contacto@ketfood.com
+        </a>
+      </p>
+      <p class="text-center">
+        Horario: Lunes a Viernes: 10:00 a 18:00 HRS
+      </p>
+    </div>
+  </div>
+    <!-- Formulario -->
+    <div class="row">
+      <div class="col-lg-12 mb-4">
+          <h3 class="text-center">¿Dudas? ¿Consultas? ¡Envíanos un Mensaje!</h3>
+        <form name="sentMessage" id="contactForm" novalidate>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Nombre Completo:</label>
+              <input type="text" class="form-control" id="name" required data-validation-required-message="Por favor ingrese su nombre.">
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Teléfono:</label>
+              <input type="tel" class="form-control" id="phone" required data-validation-required-message="Por favor ingrese su número de teléfono.">
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Correo:</label>
+              <input type="email" class="form-control" id="email" required data-validation-required-message="Por favor ingrese su dirección de correo electrónico.">
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Mensaje:</label>
+              <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Recuerde ingresar su inquietud." maxlength="999" style="resize:none"></textarea>
+            </div>
+          </div>
+          <div id="success"></div>
+          <!-- For success/fail messages -->
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar Mensaje</button>
+        </form>
+      </div>      
+    </div>
+    <!-- /.row -->
+
+    <!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+    
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">KETFOOD&copy; 2019 - Av. Alcorta #666, Santiago</p>
+        <small><p class="m-0 text-center text-white">Desarrollado por <a href="https://www.abzu.cl/ferret">Abzu & Ferret</a></p></small>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+  <!-- Bootstrap core JavaScript -->
+
+  <!-- Contact form JavaScript -->
+  <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

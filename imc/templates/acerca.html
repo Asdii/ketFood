@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Ketfood">
+  <meta name="author" content="Abzu & Ferret">
+
+  {% block title %}<title>Ketfood&copy;</title>{% endblock %}
+
+  <!-- Bootstrap CSS -->
+  {% load static %}
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="{% static 'css/ketfood.css' %}" rel="stylesheet"> 
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <!-- LOGO -->
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'css/ketlogo.png' %}"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Barra Nav -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'imc2' %}">IMC</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Información
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="{% url 'faq' %}">Preguntas Frecuentes</a>
+              <a class="dropdown-item" href="{% url 'planes' %}">Planes</a>
+            </div>
+          </li>
+          <div class="v-separator"></div>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn btn-primary text-center" >Cerrar sesión</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary text-center" >Iniciar sesión</a>
+            {% endif %}
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <div class="container">
+
+    <!-- Nav Links -->
+    <h1 class="mt-4 mb-3">Nosotros
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'index' %}">Inicio</a>
+      </li>
+      <li class="breadcrumb-item active">Nosotros</li>
+    </ol>
+
+    <!-- Introducción -->
+    <div class="row">
+      <div class="col-lg-6">
+        <img class="img-fluid rounded mb-4" src="{% static 'img/acerca/main1.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-6">
+        <h2>Acerca de Ketfood</h2>
+        <p>Oriundos de Santiago, Chile. Otorgamos un servicio de máxima calidad en nutrición para gatos desde 2019, contamos con variadas recetas perfeccionadas a través de los años por dueños de gatos en búsqueda de un mejor estilo de vida para sus queridos felinos.</p>
+        <p>Queriendo hacer entrega del mismo valor, respeto y amor por los felinos es que KETFOOD&copy; hace entrega de lo mejor de la gastronomía felina en cuanto a alimentación y nutrición a precios razonables.</p>
+        <p>Si hay algo que nos mueve, es el amor por los gatos, el amor por la comida y que Jean Paul se vaya, oh wait.</p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Equipo -->
+    <h2>Nuestro Equipo</h2>
+
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <img class="card-img-top" src="{% static 'img/acerca/e1.jpg' %}" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Colomba</h4>
+            <h6 class="card-subtitle mb-2 text-muted">CEO</h6>
+            <p class="card-text">La matrona. Ama y señora del fundo Ketfood, nada se escapa de sus tiernas miradas e indignación por el mundo.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#">colomba@ketfood.cl</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <img class="card-img-top" src="{% static 'img/acerca/e2.jpg' %}" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Toboe</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Chef en Jefe</h6>
+            <p class="card-text">El buen gusto hecho felino. Encargado del tanteo de recetas con su excelente olfato.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#">toboe@ketfood.cl</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <img class="card-img-top" src="{% static 'img/acerca/e3.jpg' %}" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Lili</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Tester Profesional</h6>
+            <p class="card-text">A veces arisca, a veces tierna. El mejor filtro de calidad hecho gato.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#">lils@ketfood.cl</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Clientes -->
+    <h2>Nuestros Clientes</h2>
+    <div class="row">
+      <div class="col-lg-2 col-sm-4 mb-4">
+        <img class="img-fluid" src="{% static 'img/acerca/cl1.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-2 col-sm-4 mb-4">
+        <img class="img-fluid" src="{% static 'img/acerca/cl2.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-2 col-sm-4 mb-4">
+        <img class="img-fluid" src="{% static 'img/acerca/cl3.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-2 col-sm-4 mb-4">
+        <img class="img-fluid" src="{% static 'img/acerca/cl4.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-2 col-sm-4 mb-4">
+        <img class="img-fluid" src="{% static 'img/acerca/cl5.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-2 col-sm-4 mb-4">
+        <img class="img-fluid" src="{% static 'img/acerca/cl6.jpg' %}" alt="">
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">KETFOOD&copy; 2019 - Av. Alcorta #666, Santiago</p>
+        <small><p class="m-0 text-center text-white">Desarrollado por <a href="https://www.abzu.cl/ferret">Abzu & Ferret</a></p></small>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+  <!-- CORE JS -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

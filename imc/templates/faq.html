@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Ketfood">
+  <meta name="author" content="Abzu & Ferret">
+
+  {% block title %}<title>Ketfood&copy;</title>{% endblock %}
+
+  <!-- Bootstrap CSS -->
+  {% load static %}
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="{% static 'css/ketfood.css' %}" rel="stylesheet"> 
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <!-- LOGO -->
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'css/ketlogo.png' %}"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Barra Nav -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'imc2' %}">IMC</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Información
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="{% url 'faq' %}">Preguntas Frecuentes</a>
+              <a class="dropdown-item" href="{% url 'planes' %}">Planes</a>
+            </div>
+          </li>
+          <div class="v-separator"></div>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn btn-primary text-center" >Cerrar sesión</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary text-center" >Iniciar sesión</a>
+            {% endif %}
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <div class="container">
+
+    <!-- Nav Links -->
+    <h1 class="mt-4 mb-3">Preguntas Frecuentes
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'index' %}">Inicio</a>
+      </li>
+      <li class="breadcrumb-item active">Preguntas Frecuentes</li>
+    </ol>
+
+    <div class="mb-4" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="card">
+        <div class="card-header" role="tab" id="headingOne">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">¿Por qué optar por la comida rawfood de KETFOOD&copy;?</a>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+          <div class="card-body">
+            Particularmente e independientemente de nosotros, la comida rawfood es notablemente una mejor fuente alimenticia para los animales en general ya que basa su dieta en lo que sería realmente y no en un pellet lleno de hormonas y proteinas de baja calidad. KETFOOD&copy; hace sus preparaciones siguiendo estrictos estándares de calidad, con los mejores ingredientes y con expertos en cocina rawfood especializada en felinos. Y aún no viniendo de nosotros, la comida rawfood está varios escalafones por encima del pellet tradicional.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" role="tab" id="headingTwo">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">¿Que tanto puede mejorar la calidad de vida de mi gato si opto por KETFOOD&copy;?
+            </a>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="card-body">
+            De forma esencial nuestra principal preocupación es el bienestar de los felinos, tomando como base que toda dieta y alimentación que nosotros proveemos está hecha tras años de investigación, prueba y práctica de nuestros propios productos en nuestros propios felinos. Es decir, estamos entregando un producto de tal calidad que nosotros mismos le damos a nuestros propios gatos en la puerta de su hogar.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" role="tab" id="headingThree">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">¿Debo hacer un plan de dieta para mi gato si opto por comida rawfood?</a>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="card-body">
+            En KETFOOD&copy; recomendamos fuertemente la evaluación nutricional de su felino antes de cotizar cualquiera de nuestros planes de productos, sin embargo y sin costo alguno, ud puede solicitar una prueba gratis de una semana de nuestros productos para el acostumbramiento de su felino.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">KETFOOD&copy; 2019 - Av. Alcorta #666, Santiago</p>
+        <small><p class="m-0 text-center text-white">Desarrollado por <a href="https://www.abzu.cl/ferret">Abzu & Ferret</a></p></small>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+  <!-- CORE JS -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

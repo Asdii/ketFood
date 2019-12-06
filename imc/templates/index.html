@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Ketfood">
+  <meta name="author" content="Abzu & Ferret">
+
+  {% block title %}<title>Ketfood&copy;</title>{% endblock %}
+
+  <!-- Bootstrap CSS -->
+  {% load static %} 
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="{% static 'css/ketfood.css' %}" rel="stylesheet"> 
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+
+  <script>
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+</script>
+
+</head>
+
+<body>
+
+
+
+  <!-- Nav -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <!-- LOGO -->
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'css/ketlogo.png' %}"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Barra Nav -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'imc2' %}">IMC</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Información
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="{% url 'faq' %}">Preguntas Frecuentes</a>
+              <a class="dropdown-item" href="{% url 'planes' %}">Planes</a>
+            </div>
+          </li>
+          <div class="v-separator"></div>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn btn-primary text-center" >Cerrar sesión</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary text-center" >Iniciar sesión</a>
+            {% endif %}
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+
+  
+
+    <!-- SLIDES -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active" style="background-image: url({% static 'img/index/c1.jpg' %})">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>DELICATESSENS</h3>
+            <p>Comida fresca preparada por maestros</p>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: url({% static 'img/index/c2.jpg' %})">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>CALIDAD DE VIDA</h3>
+            <p>Recetas hechas a la medida para cada felino</p>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: url({% static 'img/index/c3.jpg' %})">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>NUTRICIÓN GARANTIZADA</h3>
+            <p>Solo los mejores ingredientes</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Siguiente</span>
+      </a>
+    </div>
+  </header>
+
+
+
+  <!-- Contenido -->
+  <div class="container">
+
+
+    {% if user.is_authenticated %}
+    <h1 class="my-4 text-center">¡Bienvenido a Ketfood {{request.user.username}}!</h1>
+    <h4 class="card-header text-center">Esta página ha sido visitada {{ num_visitas }} veces</h4>
+    <div class="card h-100">
+          <h4 class="card-header text-center">Cantidad de Kets</h4>
+          <div class="card-body">
+            <p class="card-text text-center">{{ ketcount }}</p>
+          </div>
+    </div>
+    <br>
+    <div class="card h-100">
+          <h4 class="card-header text-center">Promedio de IMC's</h4>
+          <div class="card-body">
+            <p class="card-text text-center">{{ promedioIMC|slice:":4" }}</p>
+          </div>
+    </div>
+    <br>
+    {% else %}
+    <h1 class="my-4 text-center">¡Bienvenido a Ketfood!</h1>
+    {% endif %}
+    <br>
+    <!-- Epílogo -->
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header text-center">CÓMO EMPEZÓ TODO</h4>
+          <div class="card-body">
+            <p class="card-text text-justify">Nuestra misión comenzó con nuestras propias mascotas, buscando una alimentación óptima para así prolongar su bienestar y calidad de vida. Luego de pequeños pero excelentes intentos iniciamos expandiendo la nutrición rawfood con nuestros cercanos y poco a poco el interés de muchas personas fué creciendo. Fue así como Ketfood&copy; nació.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header text-center">LA COMIDA</h4>
+          <div class="card-body">
+            <p class="card-text text-justify">Basta con notar el reverso de la etiqueta de la comida convencional para saber que no es buena. Lo que miles de dueños saben con nosotros es que la comida rawfood preparada por manos expertas e ingredientes 100% naturales provee una serie de beneficios para su gato sin perjuicio alguno.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header text-center">¡FELINOS PRIMERO!</h4>
+          <div class="card-body">
+            <p class="card-text text-justify">Natural y apropiado: así debería ser la comida para mascotas. Muchos lo prometen. Para nosotros, esta promesa significa ante todo una alta proporción de carne real y el uso de ingredientes de alta calidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Productos Estrella -->
+    <h2 class="text-center">PRODUCTOS ESTRELLA</h2>
+    <br>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100 text-center">
+          <a href="#"><img class="card-img-top" src="{% static 'img/index/pe1.jpg' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a>Ketfood Raw Beef</a>
+            </h4>
+            <p class="card-text">Corte premium seleccionado con la grasa y proteina exactos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100 text-center">
+          <a href="#"><img class="card-img-top" src="{% static 'img/index/pe2.jpg' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a>Ketfood Raw Boost</a>
+            </h4>
+            <p class="card-text">Para gatos que se inician en la nutrición rawfood, pellet preparado con ingredientes seleccionados.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100 text-center">
+          <a href="#"><img class="card-img-top" src="{% static 'img/index/pe3.jpg' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a>Le Babée Patée</a>
+            </h4>
+            <p class="card-text">Cortes de rawfood de ave, finamente seleccionados y molidos con ingredientes a elección.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+    <br><br>
+    <!-- Caracteristicas -->
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Las Ventajas de Ketfood</h2>
+        <p>La comida para gatos preparada en Ketfood tiene las siguientes ventajas:</p>
+        <ul>
+          <li>
+            <strong>Preparación exclusiva</strong>
+          </li>
+          <li>Ingredientes Seleccionados</li>
+          <li>Hechos con amor</li>
+          <li>Comida hecha a la medida de tu gato</li>
+          <li>Diagnóstico alimenticio completamente gratuito</li>
+        </ul>
+        <p>La comida rawfood para gato de Ketfood ha sido galardonada con 6 premios FATCAT alrededor del mundo y cuenta con 2 estrellas Mehp Erdônaz a la mejor comida orientada a felinos.</p>
+        <p>¿No sabes qué elegir?, ¡Evaluemos a tu gato y démosle un buen menú!</p>
+          <div class="card-footer">
+            <a href="{% url 'imc2' %}" class="btn btn-primary text-center">¡Comenzar evaluación!</a>
+          </div>
+      </div>
+
+      <div class="col-lg-6">
+        <img class="img-fluid rounded" src="{% static 'img/index/pros1.jpg' %}" alt="">
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Contacto -->
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <p>¿Dudas? ¿Consultas? ¡Estamos para ayudarte!</p>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-lg btn-secondary btn-block" href="mailto:contacto@ketfood.com">Contáctanos</a>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">KETFOOD&copy; 2019 - Av. Alcorta #666, Santiago</p>
+        <small><p class="m-0 text-center text-white">Desarrollado por <a href="https://www.abzu.cl/ferret">Abzu & Ferret</a></p></small>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+  <!-- CORE JS -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

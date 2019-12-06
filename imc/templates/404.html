@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Ketfood">
+  <meta name="author" content="Abzu & Ferret">
+
+  {% block title %}<title>Ketfood&copy;</title>{% endblock %}
+
+  <!-- Bootstrap CSS -->
+  {% load static %}
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="{% static 'css/ketfood.css' %}" rel="stylesheet"> 
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <!-- LOGO -->
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'css/ketlogo.png' %}"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Barra Nav -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'imc2' %}">IMC</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Información
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="{% url 'faq' %}">Preguntas Frecuentes</a>
+              <a class="dropdown-item" href="{% url 'planes' %}">Planes</a>
+            </div>
+          </li>
+          <div class="v-separator"></div>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn btn-primary text-center" >Cerrar sesión</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary text-center" >Iniciar sesión</a>
+            {% endif %}
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <div class="container">
+
+    <!-- Nav Links -->
+    <h1 class="mt-4 mb-3">404
+      <small>¡Página no encontrada!</small>
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">Inicio</a>
+      </li>
+      <li class="breadcrumb-item active">404</li>
+    </ol>
+
+    <div class="jumbotron text-center">
+      <h1 class="display-1">404</h1>
+      <p>Esta página no está disponible o ha sido removida.</p>
+      <img class="img-fluid" src="{% static 'img/404/kot.png' %}" alt="">
+ 
+    </div>
+
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">KETFOOD&copy; 2019 - Av. Alcorta #666, Santiago</p>
+        <small><p class="m-0 text-center text-white">Desarrollado por <a href="https://www.abzu.cl/ferret">Abzu & Ferret</a></p></small>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+  <!-- JS CORE -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

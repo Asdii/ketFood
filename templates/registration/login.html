@@ -1,0 +1,112 @@
+{% load static %} 
+<style>
+@import "compass/css3";
+
+* { box-sizing: border-box; margin: 0; padding:0; }
+
+html {
+  background: #95a5a6;
+  background-image: url(https://image.prntscr.com/image/YCrC7-17QpWpYes_wXvJFQ.jpg);
+  background-size: cover;
+  font-family: 'Helvetica Neue', Arial, Sans-Serif;}
+
+.login-wrap {
+    top:25%;
+    position: relative;
+    margin: 0 auto;
+    background: #ecf0f1;
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333;
+    padding: 15px;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 200;
+      font-size: 2em;
+      margin-top: 10px;
+      color: #34495e;
+    }
+
+    .form {
+      padding-top: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"], label {
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 25px;
+        height: 40px;
+        border-radius: 5px;
+        outline: 0;
+        -moz-outline-style: none;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        border: 1px solid #bbb;
+        padding: 0 0 0 10px;
+        font-size: 14px;
+      }
+
+        a {
+        text-align: center;
+        font-size: 10px;
+        color: #3498db;
+      }
+
+      p{
+          padding-bottom: 10px;
+        }
+
+button {
+        background: #e74c3c;
+        border:none;
+        color: white;
+        font-size: 18px;
+        font-weight: 200;
+        cursor: pointer;
+        transition: box-shadow .4s ease;
+      }
+#boton {
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 25px;
+        height: 40px;
+        border-radius: 5px;
+        outline: 0;
+        -moz-outline-style: none;
+      }
+</style>
+
+{% block content %}
+
+
+
+<div class="login-wrap">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+  <h2>Login</h2>
+  
+  <div class="form">
+    <div>
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div>
+
+    <div>
+      <input id="boton" type="submit" value="Iniciar sesión" />
+      <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+  </div>
+</div>
+
+</form>
+
+{% endblock %}

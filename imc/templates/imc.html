@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Ketfood">
+  <meta name="author" content="Abzu & Ferret">
+
+  {% block title %}<title>Ketfood&copy;</title>{% endblock %}
+
+  <!-- Bootstrap CSS -->
+  {% load static %}
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="{% static 'css/ketfood.css' %}" rel="stylesheet"> 
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+  <script>
+
+  function calcularIMC(){
+
+    var txtEstatura = document.getElementById('estatura').value;
+    var txtPeso     = document.getElementById('peso').value;
+    var txtEdad     = document.getElementById('edad').value;
+    var txtSexo     = document.getElementById('sexo').value;
+    var IMC = txtPeso / ((txtEstatura * 2) / 100);
+
+    alert('El IMC de su gato es: ' + IMC.toString().substring(0, 5));
+
+    return true;
+  }
+
+  </script>
+
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <!-- LOGO -->
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'css/ketlogo.png' %}"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Barra Nav -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'imc2' %}">IMC</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Información
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="{% url 'faq' %}">Preguntas Frecuentes</a>
+              <a class="dropdown-item" href="{% url 'planes' %}">Planes</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <div class="container">
+
+    <!-- Nav Links -->
+    <h1 class="mt-4 mb-3">Evaluación IMC
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'index' %}">Inicio</a>
+      </li>
+      <li class="breadcrumb-item active">Evaluación IMC</li>
+    </ol>
+
+    <!-- Formulario -->
+    <div class="row">
+      <div class="col-lg-8 mb-4"  style="margin-left: 25%;">
+      <h3 style="margin-left:auto">Cálculo de Índice Masa Corporal</h3>
+        <br>
+        <form onsubmit="return calcularIMC()">
+          <div class="control-group form-group" style="text-align: center;">
+            <div class="controls">
+              <div id="inputIMC">
+              <label>Peso (KG)</label>
+              <input type="text" class="form-control" id="peso" required data-validation-required-message="Ingrese el peso del felino.">
+              <p class="help-block"></p>
+              <label>Edad</label>
+              <input type="tel" class="form-control" id="edad" required data-validation-required-message="Ingrese la edad del felino.">
+              <p class="help-block"></p>
+              </div>
+              <div id="inputIMC">
+              <label>Estatura (CM)</label>
+              <input class="form-control" id="estatura" required data-validation-required-message="Ingrese la estatura del felino.">
+              <p class="help-block"></p>
+              <label>Sexo</label>
+              <input class="form-control" id="sexo" required data-validation-required-message="Ingrese el sexo del felino.">
+              <p class="help-block"></p>
+              </div>
+            </div>
+          </div>
+          <!-- For success/fail messages -->
+          <button type="submit" class="btn btn-primary" id="sendMessageButton" style="width: 415px;">Calcular</button>
+        </form>
+        
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">KETFOOD&copy; 2019 - Av. Alcorta #666, Santiago</p>
+        <small><p class="m-0 text-center text-white">Desarrollado por <a href="https://www.abzu.cl/ferret">Abzu & Ferret</a></p></small>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+  <!-- CORE JS -->
+
+  <!-- Contact form JavaScript -->
+  <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>
